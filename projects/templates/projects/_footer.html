@@ -1,0 +1,28 @@
+{# Local context: project, completed_tasks_count, remaining_tasks_count #}
+{% if completed_tasks_count > 0 or remaining_tasks_count > 0 %}
+  <footer class="footer">
+    <span class="todo-count"><strong>{{remaining_tasks_count}}</strong> item{{remaining_tasks_count|pluralize}} left</span>
+    <ul class="filters">
+      <li>
+        <a class="all" href="{% url 'projects:detail' project.id %}">All</a>
+      </li>
+      <li>
+        <a class="active" href="{% url 'projects:detail_active' project.id %}">Active</a>
+      </li>
+      <li>
+        <a class="completed" href="{% url 'projects:detail_completed' project.id %}">Completed</a>
+      </li>
+    </ul>
+    {% if completed_tasks_count > 0 %}
+      <a href="{% url 'projects:clear_completed' project.id %}"
+        class="clear-completed"
+        rel="nofollow"
+        data-method="delete"
+        data-remote="true"
+        data-confirm="Are you sure you want to clear all completed tasks in &quot;{{project}}&quot;?&#10;This will permanently delete {{completed_tasks_count}} task{{completed_tasks_count|pluralize}}."
+      >Clear completed</a>
+    {% endif %}
+  </footer>
+{% else %}
+  <footer class="footer" style="display:none" />
+{% endif %}

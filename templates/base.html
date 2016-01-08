@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>todo • checklists</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'todomvc-app-css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css.css' %}">
+  </head>
+  <body>
+    {% block content %}{% endblock content %}
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="{% static 'js.js' %}"></script>
+  </body>
+</html>

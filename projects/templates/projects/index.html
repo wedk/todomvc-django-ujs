@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+  <section class="todoapp">
+    <header class="header">
+      <h1>projects</h1>
+      <form action="{% url 'projects:create' %}" method="post" data-remote="true">
+        <input name="name" class="new-todo new-project" placeholder="New project?" autofocus>
+      </form>
+    </header>
+    <section class="main">
+      <ul class="todo-list project-list">
+        {% for project in projects %}
+          {% include 'projects/_project.html' with project=project %}
+        {% endfor %}
+      </ul>
+    </section>
+  </section>
+{% endblock content %}

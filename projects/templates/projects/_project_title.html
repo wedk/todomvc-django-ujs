@@ -1,0 +1,9 @@
+{# Local context: project #}
+<h1>
+  <div class="view">
+    <label>{{project.name}}</label>
+  </div>
+  <form action="{% url 'projects:update' project.id %}" method="put" data-remote="true">
+    <input name="name" class="edit" value="{{project.name}}" data-original-value="{{project.name}}" data-disable>
+  </form>
+</h1>

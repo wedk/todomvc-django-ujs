@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <div class="back">
+    <a href="{% url 'projects:index' %}">&#9664; Back to project list</a>
+  </div>
+
+  <section class="todoapp filter-{{filter}}">
+
+    <header class="header">
+      {% include 'projects/_project_title.html' with project=project %}
+      <form action="{% url 'projects:create_task' project.id %}" method="post" data-remote="true">
+        <input name="title" class="new-todo" placeholder="What needs to be done?" autofocus>
+      </form>
+    </header>
+
+    <section class="main" {% if tasks|length == 0 %}style="display:none"{% endif %}>
+      <input name="completed" class="toggle-all" type="checkbox" value="1"
+        data-url="{% url 'projects:toggle_all' project.id %}" data-method="put" data-remote="true"
+        {% if remaining_tasks_count == 0 and completed_tasks_count > 0 %}checked{% endif %}>
+      <label for="toggle-all">Mark all as complete</label>
+      <ul class="todo-list">
+        {% for task in tasks %}
+          {% include 'projects/_task.html' with task=task %}
+        {% endfor %}
+      </ul>
+    </section>
+
+    {% include 'projects/_footer.html' %}
+
+  </section>
+
+{% endblock content %}

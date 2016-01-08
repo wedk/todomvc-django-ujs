@@ -1,0 +1,28 @@
+{# Local context: task #}
+<li id="task_{{task.id}}" class="{% if task.completed %}completed{% endif %}">
+
+  <div class="view">
+
+    <input name="completed" class="toggle" type="checkbox" {% if task.completed %}checked{% endif %}
+      data-remote="true"
+      data-url="{% url 'projects:toggle_task' task.project_id task.id %}"
+      data-method="put"
+      value="1">
+
+    <label>{{task.title}}</label>
+
+    <a href="{% url 'projects:delete_task' task.project_id task.id %}"
+      class="destroy"
+      rel="nofollow"
+      data-disable
+      data-method="delete"
+      data-remote="true"
+      data-confirm="Are you sure you want to delete &quot;{{task}}&quot;?"></a>
+
+  </div>
+
+  <form action="{% url 'projects:update_task' task.project_id task.id %}" method="put" data-remote="true">
+    <input name="title" class="edit" value="{{task.title}}" data-original-value="{{task.title}}" data-disable>
+  </form>
+
+</li>

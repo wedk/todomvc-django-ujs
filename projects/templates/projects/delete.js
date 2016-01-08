@@ -1,0 +1,1 @@
+$('#project_{{pk}}').remove();

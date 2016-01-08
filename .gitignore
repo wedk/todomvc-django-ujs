@@ -1,0 +1,6 @@
+__pycache__/
+venv/
+node_modules
+bower_components
+*.sass-cache*
+db.sqlite3
